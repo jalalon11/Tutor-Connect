@@ -8,8 +8,8 @@ interface FeatureCardProps {
 
 function FeatureCard({ icon, title, description }: FeatureCardProps) {
     return (
-        <div className="group flex-shrink-0 w-80 p-6 rounded-2xl bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 hover:z-10 cursor-pointer">
-            <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+        <div className="group flex-shrink-0 w-80 p-6 rounded-none bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 hover:z-10 cursor-pointer">
+            <div className="w-12 h-12 rounded-none bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 {icon}
             </div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{title}</h3>

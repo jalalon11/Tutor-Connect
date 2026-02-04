@@ -38,7 +38,7 @@ export default function AuthSplitLayout({
                         href={home()}
                         className="flex items-center gap-3 text-slate-900 dark:text-white"
                     >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 shadow-sm shadow-blue-500/20">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-none bg-blue-600 shadow-sm shadow-blue-500/20">
                             <AppLogoIcon className="size-6 fill-current text-white" />
                         </div>
                         <span className="text-xl font-bold tracking-tight">{name}</span>
@@ -53,7 +53,7 @@ export default function AuthSplitLayout({
                         <div className="mt-16 space-y-10">
                             {HIGHLIGHTS.map((highlight, index) => (
                                 <div key={index} className="flex gap-5 group">
-                                    <div className="flex-shrink-0 h-10 w-10 rounded-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center justify-center shadow-sm transition-all group-hover:border-blue-200 dark:group-hover:border-blue-900/50 group-hover:shadow-blue-500/5">
+                                    <div className="flex-shrink-0 h-10 w-10 rounded-none bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 flex items-center justify-center shadow-sm transition-all group-hover:border-blue-200 dark:group-hover:border-blue-900/50 group-hover:shadow-blue-500/5">
                                         <highlight.icon className="w-5 h-5 text-blue-600" />
                                     </div>
                                     <div>
@@ -68,10 +68,10 @@ export default function AuthSplitLayout({
                     </div>
                 </div>
 
-                <div className="relative z-10 flex items-center gap-4 p-5 rounded-2xl bg-white dark:bg-zinc-900 shadow-sm border border-slate-200 dark:border-zinc-800">
+                <div className="relative z-10 flex items-center gap-4 p-5 rounded-none bg-white dark:bg-zinc-900 shadow-sm border border-slate-200 dark:border-zinc-800">
                     <div className="flex -space-x-3">
                         {[1, 2, 3, 4].map(i => (
-                            <div key={i} className="h-9 w-9 rounded-full border-2 border-white dark:border-zinc-900 bg-gray-200 overflow-hidden shadow-sm">
+                            <div key={i} className="h-9 w-9 rounded-none border-2 border-white dark:border-zinc-900 bg-gray-200 overflow-hidden shadow-sm">
                                 <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i * 123}`} alt="avatar" />
                             </div>
                         ))}

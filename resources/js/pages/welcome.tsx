@@ -63,7 +63,7 @@ export default function Welcome({
                         <div className="flex items-center justify-between h-16">
                             {/* Logo */}
                             <div className="flex items-center gap-2">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
+                                <div className="w-10 h-10 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
                                     <GraduationCap className="w-6 h-6 text-white" />
                                 </div>
                                 <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -108,7 +108,7 @@ export default function Welcome({
 
                                 {/* Mobile Menu Button */}
                                 <button
-                                    className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
+                                    className="md:hidden p-2 rounded-none text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 transition-colors"
                                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                                     aria-label="Toggle menu"
                                 >
@@ -127,21 +127,21 @@ export default function Welcome({
                                 <div className="flex flex-col gap-2">
                                     <a
                                         href="#features"
-                                        className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                        className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-none transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         Features
                                     </a>
                                     <a
                                         href="#how-it-works"
-                                        className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                        className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-none transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         How It Works
                                     </a>
                                     <a
-                                        href="#about"
-                                        className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                        href="/about"
+                                        className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-none transition-colors"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         About
@@ -150,7 +150,7 @@ export default function Welcome({
                                         <>
                                             <Link
                                                 href={login()}
-                                                className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                                className="px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-800 rounded-none transition-colors"
                                             >
                                                 Log in
                                             </Link>
@@ -179,7 +179,7 @@ export default function Welcome({
                 {/* Flash Messages */}
                 {(flash as any)?.success && (
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-                        <div className="rounded-lg bg-green-50 border border-green-200 p-4 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200">
+                        <div className="rounded-none bg-green-50 border border-green-200 p-4 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200">
                             <p className="font-medium">✓ {(flash as any).success}</p>
                         </div>
                     </div>
@@ -189,8 +189,8 @@ export default function Welcome({
                     {/* Subtle background decorations */}
                     <div className="absolute inset-0 overflow-hidden pointer-events-none">
                         {/* Semi-circular arc decoration */}
-                        <div className="absolute top-1/2 right-0 w-[600px] h-[600px] -translate-y-1/2 translate-x-1/4 border-2 border-blue-200/30 dark:border-blue-800/20 rounded-full" />
-                        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] -translate-y-1/2 translate-x-1/4 border border-blue-100/40 dark:border-blue-800/15 rounded-full" />
+                        <div className="absolute top-1/2 right-0 w-[600px] h-[600px] -translate-y-1/2 translate-x-1/4 border-2 border-blue-200/30 dark:border-blue-800/20 rounded-none" />
+                        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] -translate-y-1/2 translate-x-1/4 border border-blue-100/40 dark:border-blue-800/15 rounded-none" />
                     </div>
 
                     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -229,7 +229,7 @@ export default function Welcome({
                                             <input
                                                 type="text"
                                                 placeholder="What subject do you need help with?"
-                                                className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-sm"
+                                                className="w-full pl-12 pr-4 py-4 rounded-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all shadow-sm"
                                             />
                                         </div>
                                         <Button
@@ -264,33 +264,33 @@ export default function Welcome({
                                     {/* Main Image Container */}
                                     <div className="relative mx-auto max-w-md lg:max-w-none">
                                         {/* Circular glow behind image */}
-                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-full blur-3xl scale-75" />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-blue-600/20 rounded-none blur-3xl scale-75" />
 
                                         {/* Hero Image */}
                                         <img
                                             src="/images/hero-tutoring.png"
                                             alt="Student learning online with Filipino tutor"
-                                            className="relative w-full h-auto rounded-2xl"
+                                            className="relative w-full h-auto rounded-none"
                                         />
 
                                         {/* Floating Stat Badges */}
                                         {/* Top Right Badge */}
                                         <div className="absolute -top-2 -right-2 sm:top-4 sm:right-0 lg:-right-8 animate-float">
-                                            <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg shadow-blue-500/30 text-sm font-semibold whitespace-nowrap">
+                                            <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-none shadow-lg shadow-blue-500/30 text-sm font-semibold whitespace-nowrap">
                                                 100+ PRC Teachers
                                             </div>
                                         </div>
 
                                         {/* Middle Right Badge */}
                                         <div className="absolute top-1/3 -right-4 sm:right-0 lg:-right-12 animate-float" style={{ animationDelay: '0.5s' }}>
-                                            <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-full shadow-lg shadow-emerald-500/30 text-sm font-semibold whitespace-nowrap">
+                                            <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-none shadow-lg shadow-emerald-500/30 text-sm font-semibold whitespace-nowrap">
                                                 98% Success Rate
                                             </div>
                                         </div>
 
                                         {/* Left Badge */}
                                         <div className="absolute top-1/2 -left-4 sm:left-0 lg:-left-8 animate-float" style={{ animationDelay: '1s' }}>
-                                            <div className="bg-gradient-to-r from-violet-500 to-violet-600 text-white px-4 py-2 rounded-full shadow-lg shadow-violet-500/30 text-sm font-semibold whitespace-nowrap">
+                                            <div className="bg-gradient-to-r from-violet-500 to-violet-600 text-white px-4 py-2 rounded-none shadow-lg shadow-violet-500/30 text-sm font-semibold whitespace-nowrap">
                                                 <Users className="w-4 h-4 inline mr-1" />
                                                 500+ Students
                                             </div>
@@ -298,16 +298,16 @@ export default function Welcome({
 
                                         {/* Bottom Badge */}
                                         <div className="absolute -bottom-2 left-1/4 animate-float" style={{ animationDelay: '1.5s' }}>
-                                            <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-full shadow-lg shadow-amber-500/30 text-sm font-semibold whitespace-nowrap">
+                                            <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-none shadow-lg shadow-amber-500/30 text-sm font-semibold whitespace-nowrap">
                                                 <Star className="w-4 h-4 inline mr-1" />
                                                 4.9 Avg Rating
                                             </div>
                                         </div>
 
                                         {/* Small decorative dots */}
-                                        <div className="absolute top-8 left-8 w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
-                                        <div className="absolute bottom-12 right-12 w-2 h-2 bg-emerald-500 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-                                        <div className="absolute top-1/2 left-4 w-2 h-2 bg-violet-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+                                        <div className="absolute top-8 left-8 w-3 h-3 bg-blue-500 rounded-none animate-pulse" />
+                                        <div className="absolute bottom-12 right-12 w-2 h-2 bg-emerald-500 rounded-none animate-pulse" style={{ animationDelay: '0.5s' }} />
+                                        <div className="absolute top-1/2 left-4 w-2 h-2 bg-violet-500 rounded-none animate-pulse" style={{ animationDelay: '1s' }} />
                                     </div>
                                 </AnimatedSection>
                             </div>
@@ -383,13 +383,13 @@ export default function Welcome({
                                 <img
                                     src="/images/teacher-teaching.png"
                                     alt="Teacher conducting online lesson"
-                                    className="w-full max-w-md mx-auto rounded-2xl shadow-xl hover-lift transition-all duration-300"
+                                    className="w-full max-w-md mx-auto rounded-none shadow-xl hover-lift transition-all duration-300"
                                 />
                             </AnimatedSection>
                             <div className="order-1 lg:order-2 space-y-8">
                                 <AnimatedSection animation="fade-in-up" delay={0}>
                                     <div className="flex gap-4 group">
-                                        <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0 text-xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                                        <div className="w-12 h-12 rounded-none bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0 text-xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
                                             1
                                         </div>
                                         <div>
@@ -402,7 +402,7 @@ export default function Welcome({
                                 </AnimatedSection>
                                 <AnimatedSection animation="fade-in-up" delay={150}>
                                     <div className="flex gap-4 group">
-                                        <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0 text-xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                                        <div className="w-12 h-12 rounded-none bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0 text-xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
                                             2
                                         </div>
                                         <div>
@@ -415,7 +415,7 @@ export default function Welcome({
                                 </AnimatedSection>
                                 <AnimatedSection animation="fade-in-up" delay={300}>
                                     <div className="flex gap-4 group">
-                                        <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0 text-xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                                        <div className="w-12 h-12 rounded-none bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center flex-shrink-0 text-xl font-bold text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
                                             3
                                         </div>
                                         <div>
@@ -441,7 +441,7 @@ export default function Welcome({
                                 </p>
                                 <ul className="space-y-3">
                                     <li className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                                        <div className="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                                        <div className="w-5 h-5 rounded-none bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
                                             <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
@@ -449,7 +449,7 @@ export default function Welcome({
                                         One-on-one attention
                                     </li>
                                     <li className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                                        <div className="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                                        <div className="w-5 h-5 rounded-none bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
                                             <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
@@ -457,7 +457,7 @@ export default function Welcome({
                                         Progress tracking
                                     </li>
                                     <li className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                                        <div className="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                                        <div className="w-5 h-5 rounded-none bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
                                             <svg className="w-3 h-3 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                             </svg>
@@ -470,7 +470,7 @@ export default function Welcome({
                                 <img
                                     src="/images/student-learning.png"
                                     alt="Student engaged in online learning"
-                                    className="w-full max-w-md mx-auto rounded-2xl shadow-xl hover-lift transition-all duration-300"
+                                    className="w-full max-w-md mx-auto rounded-none shadow-xl hover-lift transition-all duration-300"
                                 />
                             </AnimatedSection>
                         </div>
@@ -493,7 +493,7 @@ export default function Welcome({
                         <div className="grid md:grid-cols-4 gap-12">
                             <div className="md:col-span-2">
                                 <div className="flex items-center gap-2 mb-4">
-                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                                    <div className="w-10 h-10 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                                         <GraduationCap className="w-6 h-6 text-white" />
                                     </div>
                                     <span className="text-xl font-bold">TutorConnect</span>

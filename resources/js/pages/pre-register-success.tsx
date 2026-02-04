@@ -16,7 +16,7 @@ export default function PreRegisterSuccess({ message, name }: Props) {
                 <div className="w-full max-w-md text-center">
                     {/* Success Animation */}
                     <div className="relative inline-block mb-6">
-                        <div className="w-24 h-24 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center animate-pulse">
+                        <div className="w-24 h-24 rounded-none bg-green-100 dark:bg-green-900/30 flex items-center justify-center animate-pulse">
                             <CheckCircle2 className="w-12 h-12 text-green-600 dark:text-green-400" />
                         </div>
                         <div className="absolute -top-2 -right-2">

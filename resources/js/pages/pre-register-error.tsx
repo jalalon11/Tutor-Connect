@@ -15,7 +15,7 @@ export default function PreRegisterError({ message }: Props) {
                 <div className="w-full max-w-md text-center">
                     {/* Error Icon */}
                     <div className="inline-block mb-6">
-                        <div className="w-20 h-20 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-none bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
                             <XCircle className="w-10 h-10 text-red-600 dark:text-red-400" />
                         </div>
                     </div>

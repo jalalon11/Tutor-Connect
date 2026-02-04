@@ -150,7 +150,7 @@ export default function TeacherApplicationsIndex({ applications }: Props) {
                                         <TableRow key={app.id} className="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors">
                                             <TableCell className="py-4 pl-6">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                                                    <div className="w-10 h-10 rounded-none bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                                                         <span className="font-semibold text-blue-600 dark:text-blue-400">
                                                             {app.name.charAt(0).toUpperCase()}
                                                         </span>
@@ -178,7 +178,7 @@ export default function TeacherApplicationsIndex({ applications }: Props) {
                                                 <div className="flex flex-col gap-2">
                                                     <div className="text-sm font-medium">
                                                         {app.experience_years !== null ? (
-                                                            <span className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded text-xs border border-blue-100 dark:border-blue-800">
+                                                            <span className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-none border border-blue-100 dark:border-blue-800">
                                                                 {app.experience_years} years exp.
                                                             </span>
                                                         ) : (

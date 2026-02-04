@@ -43,7 +43,7 @@ export default function About() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-16">
                             <Link href="/" className="flex items-center gap-2">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
+                                <div className="w-10 h-10 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
                                     <GraduationCap className="w-6 h-6 text-white" />
                                 </div>
                                 <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -128,7 +128,7 @@ export default function About() {
                                 </ul>
                             </div>
                             <div className="relative">
-                                <div className="aspect-square rounded-3xl bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 flex items-center justify-center">
+                                <div className="aspect-square rounded-none bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 flex items-center justify-center">
                                     <div className="text-center p-8">
                                         <Shield className="w-24 h-24 text-blue-600 dark:text-blue-400 mx-auto mb-6" />
                                         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Verified Tutors</h3>
@@ -153,8 +153,8 @@ export default function About() {
                         </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {VALUES.map((value, index) => (
-                                <div key={index} className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow">
-                                    <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+                                <div key={index} className="bg-white dark:bg-gray-900 rounded-none p-6 shadow-sm hover:shadow-lg transition-shadow">
+                                    <div className="w-12 h-12 rounded-none bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
                                         <value.icon className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                                     </div>
                                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{value.title}</h3>
@@ -195,7 +195,7 @@ export default function About() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                             <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                                <div className="w-8 h-8 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                                     <GraduationCap className="w-5 h-5 text-white" />
                                 </div>
                                 <span className="font-bold">TutorConnect</span>

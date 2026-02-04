@@ -121,7 +121,7 @@ export function AdminSettingsSheet() {
                 <div className="p-6 pb-4 border-b border-gray-100 dark:border-gray-800">
                     <SheetHeader className="text-left">
                         <SheetTitle className="flex items-center gap-3 text-lg">
-                            <div className="w-9 h-9 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                            <div className="w-9 h-9 rounded-none bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                                 <Settings className="w-5 h-5 text-blue-600" />
                             </div>
                             App Settings
@@ -132,10 +132,10 @@ export function AdminSettingsSheet() {
                     </SheetHeader>
 
                     {/* Tabs */}
-                    <div className="flex gap-1 mt-5 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                    <div className="flex gap-1 mt-5 p-1 bg-gray-100 dark:bg-gray-800 rounded-none">
                         <button
                             onClick={() => setActiveTab('general')}
-                            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === 'general'
+                            className={`flex-1 px-4 py-2 text-sm font-medium rounded-none transition-colors ${activeTab === 'general'
                                 ? 'bg-white dark:bg-gray-900 text-blue-600 shadow-sm'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                 }`}
@@ -144,7 +144,7 @@ export function AdminSettingsSheet() {
                         </button>
                         <button
                             onClick={() => setActiveTab('mail')}
-                            className={`flex-1 px-4 py-2 text-sm font-medium rounded-md transition-colors ${activeTab === 'mail'
+                            className={`flex-1 px-4 py-2 text-sm font-medium rounded-none transition-colors ${activeTab === 'mail'
                                 ? 'bg-white dark:bg-gray-900 text-blue-600 shadow-sm'
                                 : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                                 }`}
@@ -172,7 +172,7 @@ export function AdminSettingsSheet() {
                             <div className="space-y-3">
                                 <Label className="text-sm font-medium">App Icon</Label>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-16 h-16 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700 flex-shrink-0">
+                                    <div className="w-16 h-16 rounded-none bg-gray-100 dark:bg-gray-800 flex items-center justify-center overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700 flex-shrink-0">
                                         {iconPreview || appIcon ? (
                                             <img
                                                 src={iconPreview || `/storage/${appIcon}`}
@@ -191,7 +191,7 @@ export function AdminSettingsSheet() {
                                                 onChange={handleIconChange}
                                                 className="hidden"
                                             />
-                                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 text-sm font-medium transition-colors">
+                                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-blue-50 text-blue-600 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-400 text-sm font-medium transition-colors">
                                                 <Upload className="w-4 h-4" />
                                                 Upload
                                             </span>
@@ -200,7 +200,7 @@ export function AdminSettingsSheet() {
                                             <button
                                                 type="button"
                                                 onClick={handleRemoveIcon}
-                                                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 text-sm font-medium transition-colors"
+                                                className="inline-flex items-center gap-2 px-4 py-2 rounded-none text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 text-sm font-medium transition-colors"
                                             >
                                                 <Trash2 className="w-4 h-4" />
                                                 Remove
@@ -222,7 +222,7 @@ export function AdminSettingsSheet() {
                                             key={option.value}
                                             type="button"
                                             onClick={() => updateAppearance(option.value)}
-                                            className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 transition-all ${appearance === option.value
+                                            className={`flex flex-col items-center gap-2 p-3 rounded-none border-2 transition-all ${appearance === option.value
                                                 ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-600'
                                                 : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 text-gray-600 dark:text-gray-400'
                                                 }`}

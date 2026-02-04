@@ -84,7 +84,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                 {step === 'provider' ? (
                     <>
                         <DialogHeader className="text-center sm:text-center">
-                            <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 shadow-lg shadow-blue-500/30">
+                            <div className="mx-auto w-16 h-16 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 shadow-lg shadow-blue-500/30">
                                 <GraduationCap className="w-8 h-8 text-white" />
                             </div>
                             <DialogTitle className="text-2xl">Become a Tutor</DialogTitle>
@@ -97,7 +97,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                             {/* Google */}
                             <a
                                 href="/auth/google/redirect?type=teacher"
-                                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg border border-gray-200 bg-white text-gray-700 font-medium hover:bg-gray-50 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-none border border-gray-200 bg-white text-gray-700 font-medium hover:bg-gray-50 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                             >
                                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -111,7 +111,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                             {/* Facebook */}
                             <a
                                 href="/auth/facebook/redirect?type=teacher"
-                                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg bg-[#1877F2] text-white font-medium hover:bg-[#166FE5] transition-colors"
+                                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-none bg-[#1877F2] text-white font-medium hover:bg-[#166FE5] transition-colors"
                             >
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -122,7 +122,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                             {/* Email */}
                             <button
                                 onClick={() => setStep('email-form')}
-                                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 text-gray-700 font-medium hover:bg-gray-100 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-none border border-gray-200 bg-gray-50 text-gray-700 font-medium hover:bg-gray-100 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                             >
                                 <Mail className="w-5 h-5" />
                                 Continue with Email
@@ -139,7 +139,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                             <div className="flex items-center gap-2">
                                 <button
                                     onClick={() => setStep('provider')}
-                                    className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                    className="p-1 rounded-none hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                                 >
                                     <ArrowLeft className="w-5 h-5" />
                                 </button>
@@ -200,7 +200,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                                     id="experience_years"
                                     value={data.experience_years}
                                     onChange={e => setData('experience_years', e.target.value)}
-                                    className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                                    className="flex h-9 w-full rounded-none border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                                 >
                                     <option value="">Select experience</option>
                                     {EXPERIENCE_OPTIONS.map((opt) => (
@@ -218,12 +218,12 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                                             key={subj}
                                             type="button"
                                             onClick={() => toggleSubject(subj)}
-                                            className={`flex items-center gap-2 px-3 py-1.5 rounded-md border text-left transition-colors ${data.subjects.includes(subj)
+                                            className={`flex items-center gap-2 px-3 py-1.5 rounded-none border text-left transition-colors ${data.subjects.includes(subj)
                                                 ? 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-800 dark:text-blue-300'
                                                 : 'bg-white border-gray-200 text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                                                 }`}
                                         >
-                                            <div className={`w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 ${data.subjects.includes(subj)
+                                            <div className={`w-4 h-4 rounded-none border flex items-center justify-center flex-shrink-0 ${data.subjects.includes(subj)
                                                 ? 'bg-blue-500 border-blue-500'
                                                 : 'bg-white border-gray-300 dark:bg-gray-700 dark:border-gray-600'
                                                 }`}>

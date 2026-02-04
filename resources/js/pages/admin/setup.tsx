@@ -27,7 +27,7 @@ export default function Setup() {
                 <div className="w-full max-w-md">
                     {/* Logo Section */}
                     <div className="flex flex-col items-center mb-8">
-                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center shadow-xl shadow-blue-500/20 mb-4">
+                        <div className="w-16 h-16 rounded-none bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center shadow-xl shadow-blue-500/20 mb-4">
                             <ShieldCheck className="w-10 h-10 text-white" />
                         </div>
                         <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
@@ -39,7 +39,7 @@ export default function Setup() {
                     </div>
 
                     {/* Form Card */}
-                    <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-2xl shadow-blue-500/5 border border-white/20 dark:border-gray-800">
+                    <div className="bg-white dark:bg-gray-900 rounded-none p-8 shadow-2xl shadow-blue-500/5 border border-white/20 dark:border-gray-800">
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div className="space-y-2">
                                 <Label htmlFor="name" className="text-sm font-medium">Full Name</Label>

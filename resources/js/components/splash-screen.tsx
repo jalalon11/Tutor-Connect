@@ -41,8 +41,8 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
             <div className="relative flex flex-col items-center gap-8">
                 {/* Logo with Animation */}
                 <div className="relative">
-                    <div className="absolute inset-0 bg-blue-600/20 rounded-3xl blur-2xl animate-pulse" />
-                    <div className="relative bg-blue-600 p-6 rounded-[2rem] shadow-2xl shadow-blue-600/20 animate-in zoom-in duration-700">
+                    <div className="absolute inset-0 bg-blue-600/20 rounded-none blur-2xl animate-pulse" />
+                    <div className="relative bg-blue-600 p-6 rounded-none shadow-2xl shadow-blue-600/20 animate-in zoom-in duration-700">
                         <AppLogoIcon className="w-16 h-16 fill-current text-white" />
                     </div>
                 </div>
@@ -58,9 +58,9 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
                 </div>
 
                 {/* Modern Progress Bar */}
-                <div className="w-48 h-1 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden mt-4">
+                <div className="w-48 h-1 bg-gray-100 dark:bg-gray-800 rounded-none overflow-hidden mt-4">
                     <div
-                        className="h-full bg-blue-600 transition-all duration-75 ease-out rounded-full shadow-[0_0_8px_rgba(37,99,235,0.5)]"
+                        className="h-full bg-blue-600 transition-all duration-75 ease-out rounded-none shadow-[0_0_8px_rgba(37,99,235,0.5)]"
                         style={{ width: `${progress}%` }}
                     />
                 </div>

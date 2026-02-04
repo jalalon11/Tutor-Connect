@@ -23,7 +23,7 @@ export default function PreRegistrationDialog({ open, onOpenChange }: PreRegistr
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader className="text-center sm:text-center">
-                    <div className="mx-auto w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 shadow-lg shadow-blue-500/30">
+                    <div className="mx-auto w-16 h-16 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 shadow-lg shadow-blue-500/30">
                         <GraduationCap className="w-8 h-8 text-white" />
                     </div>
                     <DialogTitle className="text-2xl">Pre-Register</DialogTitle>
@@ -61,7 +61,7 @@ export default function PreRegistrationDialog({ open, onOpenChange }: PreRegistr
                     {/* Email - Opens new tab */}
                     <button
                         onClick={handleEmailClick}
-                        className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 text-gray-700 font-medium hover:bg-gray-100 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                        className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-none border border-gray-200 bg-gray-50 text-gray-700 font-medium hover:bg-gray-100 transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                     >
                         <Mail className="w-5 h-5" />
                         Continue with Email

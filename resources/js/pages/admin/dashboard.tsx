@@ -189,10 +189,10 @@ export default function AdminDashboard({ stats, recentApplications }: Props) {
                                 {recentApplications.map((app) => (
                                     <div
                                         key={app.id}
-                                        className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50"
+                                        className="flex items-center justify-between p-4 rounded-none bg-gray-50 dark:bg-gray-800/50"
                                     >
                                         <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                                            <div className="w-10 h-10 rounded-none bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                                                 <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
                                                     {app.name.charAt(0).toUpperCase()}
                                                 </span>
@@ -220,7 +220,7 @@ export default function AdminDashboard({ stats, recentApplications }: Props) {
                     <Link href="/admin/teacher-applications" className="block">
                         <Card className="h-full hover:shadow-md hover:border-blue-300 transition-all cursor-pointer">
                             <CardContent className="flex items-center gap-4 p-6">
-                                <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-none bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                                     <Users className="w-6 h-6 text-blue-600" />
                                 </div>
                                 <div>
@@ -234,7 +234,7 @@ export default function AdminDashboard({ stats, recentApplications }: Props) {
                     <Link href="/admin/settings" className="block">
                         <Card className="h-full hover:shadow-md hover:border-blue-300 transition-all cursor-pointer">
                             <CardContent className="flex items-center gap-4 p-6">
-                                <div className="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-none bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
                                     <Settings className="w-6 h-6 text-blue-600" />
                                 </div>
                                 <div>
