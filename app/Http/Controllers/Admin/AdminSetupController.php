@@ -65,6 +65,6 @@ class AdminSetupController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard')->with('success', 'Admin account created successfully! Welcome to the dashboard.');
+        return redirect('/admin/dashboard')->with('success', 'Admin account created successfully! Welcome to the dashboard.');
     }
 }

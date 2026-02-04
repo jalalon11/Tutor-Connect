@@ -79,7 +79,7 @@ export default function Welcome({
                                 <a href="#how-it-works" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors animated-underline">
                                     How It Works
                                 </a>
-                                <a href="#about" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors animated-underline">
+                                <a href="/about" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors animated-underline">
                                     About
                                 </a>
                             </div>

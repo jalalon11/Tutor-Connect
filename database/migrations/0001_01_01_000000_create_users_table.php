@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -18,6 +17,19 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            // Role: null = undecided, student, teacher
+            $table->enum('role', ['student', 'teacher'])->nullable();
+
+            // Teacher application fields
+            $table->enum('teacher_status', ['pending', 'approved', 'rejected'])->nullable();
+            $table->string('phone')->nullable();
+            $table->json('subjects')->nullable();
+            $table->integer('experience_years')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('avatar_url')->nullable();
+            $table->timestamp('applied_at')->nullable();
+
             $table->timestamps();
         });
 
