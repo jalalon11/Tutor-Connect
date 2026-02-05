@@ -1,5 +1,10 @@
-import { useState } from 'react';
 import { useForm, router, usePage } from '@inertiajs/react';
+import { Settings, Image, Trash2, Upload, Mail, Server, Lock, Eye, EyeOff, Sun, Moon, Monitor } from 'lucide-react';
+import { useState } from 'react';
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
     Sheet,
     SheetContent,
@@ -8,13 +13,9 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import InputError from '@/components/input-error';
-import { Settings, Image, Trash2, Upload, Mail, Server, Lock, Eye, EyeOff, Send, Sun, Moon, Monitor } from 'lucide-react';
-import { useAppearance, Appearance } from '@/hooks/use-appearance';
+import type { Appearance } from '@/hooks/use-appearance';
+import { useAppearance } from '@/hooks/use-appearance';
 
 interface MailSettings {
     MAIL_MAILER: string;
@@ -42,8 +43,6 @@ export function AdminSettingsSheet() {
     const [open, setOpen] = useState(false);
     const [iconPreview, setIconPreview] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
-    const [testEmail, setTestEmail] = useState('');
-    const [testingSending, setTestingSending] = useState(false);
     const [activeTab, setActiveTab] = useState<'general' | 'mail'>('general');
 
     const appName = appSettings?.name || 'TutorConnect';
@@ -78,13 +77,7 @@ export function AdminSettingsSheet() {
         mailForm.post('/admin/settings/mail');
     };
 
-    const handleTestEmail = () => {
-        if (!testEmail) return;
-        setTestingSending(true);
-        router.post('/admin/settings/mail/test', { test_email: testEmail }, {
-            onFinish: () => setTestingSending(false),
-        });
-    };
+
 
     const handleIconChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -363,36 +356,6 @@ export function AdminSettingsSheet() {
                                 {mailForm.processing && <Spinner className="mr-2" />}
                                 Save Mail Settings
                             </Button>
-
-                            {/* Test Email Section */}
-                            {/* <div className="pt-5 mt-5 border-t border-gray-100 dark:border-gray-800">
-                                <div className="flex items-center gap-2 mb-3">
-                                    <Send className="w-4 h-4 text-blue-600" />
-                                    <Label className="text-sm font-medium">Test Email</Label>
-                                </div>
-                                <p className="text-xs text-muted-foreground mb-3">
-                                    Send a test email to verify your configuration.
-                                </p>
-                                <div className="flex gap-2">
-                                    <Input
-                                        type="email"
-                                        value={testEmail}
-                                        onChange={e => setTestEmail(e.target.value)}
-                                        placeholder="Enter email to test"
-                                        className="flex-1"
-                                    />
-                                    <Button
-                                        type="button"
-                                        onClick={handleTestEmail}
-                                        disabled={testingSending || !testEmail}
-                                        variant="outline"
-                                        className="border-blue-200 text-blue-600 hover:bg-blue-50 gap-2 px-4"
-                                    >
-                                        {testingSending ? <Spinner className="w-4 h-4" /> : <Send className="w-4 h-4" />}
-                                        Send
-                                    </Button>
-                                </div>
-                            </div> */}
                         </form>
                     )}
                 </div>

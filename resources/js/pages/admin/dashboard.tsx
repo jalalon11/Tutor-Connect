@@ -1,9 +1,4 @@
 import { Head, Link } from '@inertiajs/react';
-import AdminLayout from '@/layouts/admin-layout';
-import { BreadcrumbItem } from '@/types';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { format } from 'date-fns';
 import {
     Users,
@@ -15,6 +10,11 @@ import {
     UserCheck,
     Settings,
 } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import AdminLayout from '@/layouts/admin-layout';
+import type { BreadcrumbItem } from '@/types';
 
 interface Stats {
     totalApplications: number;

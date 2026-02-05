@@ -1,6 +1,9 @@
 import { Head, router } from '@inertiajs/react';
-import AdminLayout from '@/layouts/admin-layout';
-import { BreadcrumbItem } from '@/types';
+import { format } from 'date-fns';
+import { Mail, Phone, Users, CheckCircle2, XCircle, Clock, UserCheck } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
     Table,
     TableBody,
@@ -9,11 +12,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { format } from 'date-fns';
-import { Mail, Phone, Users, CheckCircle2, XCircle, Clock, UserCheck } from 'lucide-react';
+import AdminLayout from '@/layouts/admin-layout';
+import type { BreadcrumbItem } from '@/types';
 
 interface Application {
     id: number;

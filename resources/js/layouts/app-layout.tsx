@@ -1,6 +1,6 @@
 import { usePage } from '@inertiajs/react';
-import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
 import AdminLayout from '@/layouts/admin-layout';
+import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
 import type { AppLayoutProps, SharedData } from '@/types';
 
 export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => {

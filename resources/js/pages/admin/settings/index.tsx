@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
 import { Head, useForm, router } from '@inertiajs/react';
-import AdminLayout from '@/layouts/admin-layout';
-import { BreadcrumbItem } from '@/types';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Settings, Image, Trash2, Upload, Mail, Server, Lock, Eye, EyeOff, Send, Users, Rocket, CheckCircle2, Clock } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import InputError from '@/components/input-error';
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Spinner } from '@/components/ui/spinner';
-import InputError from '@/components/input-error';
-import { Settings, Image, Trash2, Upload, Mail, Server, Lock, Eye, EyeOff, Send, Users, Rocket, CheckCircle2, Clock } from 'lucide-react';
+import AdminLayout from '@/layouts/admin-layout';
+import type { BreadcrumbItem } from '@/types';
 
 interface SettingsData {
     app_name: string;

@@ -1,8 +1,8 @@
 import { Link, usePage } from '@inertiajs/react';
+import { BookOpen, Users, Star } from 'lucide-react';
 import AppLogoIcon from '@/components/app-logo-icon';
 import { home } from '@/routes';
 import type { AuthLayoutProps, SharedData } from '@/types';
-import { GraduationCap, BookOpen, Users, Star, CheckCircle2 } from 'lucide-react';
 
 const HIGHLIGHTS = [
     {

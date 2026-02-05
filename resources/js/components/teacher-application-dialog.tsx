@@ -1,5 +1,8 @@
-import { useState, useEffect } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
+import { GraduationCap, ArrowLeft, Mail, Check } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
     DialogContent,
@@ -7,12 +10,9 @@ import {
     DialogTitle,
     DialogDescription,
 } from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import InputError from '@/components/input-error';
-import { GraduationCap, ArrowLeft, Mail, Check } from 'lucide-react';
 
 const SUBJECTS = [
     'Mathematics', 'English', 'Science', 'Filipino',
@@ -53,7 +53,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                 clearErrors();
             }, 300);
         }
-    }, [open]);
+    }, [open, reset, clearErrors]);
 
     // Close dialog on success
     useEffect(() => {

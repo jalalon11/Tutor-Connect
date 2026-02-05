@@ -1,29 +1,4 @@
-import { useState } from 'react';
 import { Head, router } from '@inertiajs/react';
-import { toast } from 'sonner';
-import AdminLayout from '@/layouts/admin-layout';
-import { BreadcrumbItem } from '@/types';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Spinner } from '@/components/ui/spinner';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-} from "@/components/ui/dialog";
 import { format } from 'date-fns';
 import {
     Users,
@@ -35,6 +10,31 @@ import {
     ChevronLeft,
     ChevronRight,
 } from 'lucide-react';
+import { useState } from 'react';
+import { toast } from 'sonner';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+import { Spinner } from '@/components/ui/spinner';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
+import AdminLayout from '@/layouts/admin-layout';
+import type { BreadcrumbItem } from '@/types';
 
 interface PreRegistration {
     id: number;

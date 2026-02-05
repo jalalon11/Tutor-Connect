@@ -1,3 +1,4 @@
+import { GraduationCap, Mail } from 'lucide-react';
 import {
     Dialog,
     DialogContent,
@@ -5,7 +6,6 @@ import {
     DialogTitle,
     DialogDescription,
 } from '@/components/ui/dialog';
-import { GraduationCap, Mail } from 'lucide-react';
 
 interface PreRegistrationDialogProps {
     open: boolean;

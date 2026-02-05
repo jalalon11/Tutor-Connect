@@ -1,32 +1,17 @@
 import { Head, Link, usePage } from '@inertiajs/react';
+import { GraduationCap, Shield, Clock, Globe, Star, Users, BookOpen, Video, CreditCard, Sparkles, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { dashboard, login, register } from '@/routes';
-import type { SharedData } from '@/types';
+import { AnimatedSection } from '@/components/animations';
+import FeatureMarquee from '@/components/feature-marquee';
 import PreRegistrationDialog from '@/components/pre-registration-dialog';
 import SplashScreen from '@/components/splash-screen';
-import FeatureMarquee from '@/components/feature-marquee';
-import { AnimatedSection, useCountUp } from '@/components/animations';
-import { GraduationCap, Shield, Clock, Globe, Star, Users, BookOpen, Video, CreditCard, Sparkles, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { dashboard, login } from '@/routes';
+import type { SharedData } from '@/types';
 
-// Animated stat card component
-function StatCard({ value, suffix, label }: { value: string; suffix: string; label: string }) {
-    return (
-        <div className="text-center lg:text-left group">
-            <div className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
-                {value}<span className="text-primary">{suffix}</span>
-            </div>
-            <div className="text-xs text-gray-500 dark:text-gray-400">{label}</div>
-        </div>
-    );
-}
 
-export default function Welcome({
-    canRegister = true,
-}: {
-    canRegister?: boolean;
-}) {
+
+export default function Welcome() {
     const { auth, flash } = usePage<SharedData>().props;
     const [dialogOpen, setDialogOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -177,10 +162,10 @@ export default function Welcome({
                 </nav>
 
                 {/* Flash Messages */}
-                {(flash as any)?.success && (
+                {flash?.success && (
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
                         <div className="rounded-none bg-green-50 border border-green-200 p-4 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-200">
-                            <p className="font-medium">✓ {(flash as any).success}</p>
+                            <p className="font-medium">✓ {flash.success}</p>
                         </div>
                     </div>
                 )}

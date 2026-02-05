@@ -1,7 +1,7 @@
-import { AppContent } from '@/components/app-content';
-import { AppShell } from '@/components/app-shell';
 import { AdminSidebar } from '@/components/admin-sidebar';
 import { AdminSidebarHeader } from '@/components/admin-sidebar-header';
+import { AppContent } from '@/components/app-content';
+import { AppShell } from '@/components/app-shell';
 import { Toaster } from '@/components/ui/sonner';
 import type { AppLayoutProps } from '@/types';
 

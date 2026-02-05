@@ -1,10 +1,10 @@
 import { Head, useForm } from '@inertiajs/react';
+import { ShieldCheck, Mail, Lock, User as UserIcon } from 'lucide-react';
+import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
-import InputError from '@/components/input-error';
-import { GraduationCap, ShieldCheck, Mail, Lock, User as UserIcon } from 'lucide-react';
 
 export default function Setup() {
     const { data, setData, post, processing, errors } = useForm({

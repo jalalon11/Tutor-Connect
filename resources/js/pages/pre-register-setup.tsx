@@ -1,12 +1,4 @@
-import { useState, useEffect } from 'react';
 import { Head, useForm } from '@inertiajs/react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import { Progress } from '@/components/ui/progress';
-import InputError from '@/components/input-error';
-import AppLogoIcon from '@/components/app-logo-icon';
 import {
     CheckCircle2,
     Lock,
@@ -17,8 +9,15 @@ import {
     ArrowRight,
     Users,
     Shield,
-    Sparkles,
 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import AppLogoIcon from '@/components/app-logo-icon';
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Progress } from '@/components/ui/progress';
+import { Spinner } from '@/components/ui/spinner';
 
 interface Props {
     token: string;

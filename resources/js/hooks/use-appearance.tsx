@@ -31,6 +31,9 @@ const getStoredAppearance = (): Appearance => {
 };
 
 const isDarkMode = (appearance: Appearance): boolean => {
+    if (appearance === 'system') {
+        return prefersDark();
+    }
     return appearance === 'dark';
 };
 

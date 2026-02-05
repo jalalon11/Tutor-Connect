@@ -1,6 +1,6 @@
+import { AdminSettingsSheet } from '@/components/admin-settings-sheet';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import { AdminSettingsSheet } from '@/components/admin-settings-sheet';
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
 
 interface AdminHeaderProps {
