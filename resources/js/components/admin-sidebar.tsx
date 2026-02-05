@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { LayoutGrid, Users, Home, GraduationCap } from 'lucide-react';
+import { LayoutGrid, Users, Home, GraduationCap, UserPlus } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -24,6 +24,11 @@ const adminNavItems: NavItem[] = [
         title: 'Teacher Applications',
         href: '/admin/teacher-applications',
         icon: Users,
+    },
+    {
+        title: 'Pre-Registrations',
+        href: '/admin/pre-registrations',
+        icon: UserPlus,
     },
 ];
 

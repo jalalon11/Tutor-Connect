@@ -6,6 +6,7 @@ use App\Http\Controllers\TeacherApplicationController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\TeacherApplicationController as AdminTeacherApplicationController;
 use App\Http\Controllers\Admin\AppSettingsController;
+use App\Http\Controllers\Admin\PreRegistrationAdminController;
 use App\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,6 +30,8 @@ Route::get('/pre-register', [PreRegistrationController::class, 'show'])->name('p
 Route::post('/pre-register', [PreRegistrationController::class, 'store'])->name('pre-register.store');
 Route::get('/pre-register/sent', [PreRegistrationController::class, 'sent'])->name('pre-register.sent');
 Route::get('/pre-register/verify/{token}', [PreRegistrationController::class, 'verify'])->name('pre-register.verify');
+Route::get('/pre-register/setup/{token}', [PreRegistrationController::class, 'showSetup'])->name('pre-register.setup');
+Route::post('/pre-register/complete-setup', [PreRegistrationController::class, 'completeSetup'])->name('pre-register.complete-setup');
 
 // Teacher Application
 Route::post('/apply-as-teacher', [TeacherApplicationController::class, 'store'])
@@ -53,6 +56,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/teacher-applications/{user}/reject', [AdminTeacherApplicationController::class, 'reject'])
         ->name('teacher-applications.reject');
 
+    // Pre-Registration Management
+    Route::get('/pre-registrations', [PreRegistrationAdminController::class, 'index'])
+        ->name('pre-registrations.index');
+    Route::get('/pre-registrations/stats', [PreRegistrationAdminController::class, 'stats'])
+        ->name('pre-registrations.stats');
+    Route::post('/pre-registrations/send-emails', [PreRegistrationAdminController::class, 'sendEmailsToSelected'])
+        ->name('pre-registrations.send-emails');
+    Route::post('/pre-registrations/send-launch-emails', [PreRegistrationAdminController::class, 'sendLaunchEmails'])
+        ->name('pre-registrations.send-launch-emails');
+
     // App Settings
     Route::get('/settings', [AppSettingsController::class, 'index'])
         ->name('settings.index');
@@ -73,3 +86,4 @@ Route::get('/auth/{provider}/callback', [SocialAuthController::class, 'callback'
     ->name('auth.callback');
 
 require __DIR__ . '/settings.php';
+
