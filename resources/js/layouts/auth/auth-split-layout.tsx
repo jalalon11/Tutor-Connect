@@ -1,6 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, Users, Star } from 'lucide-react';
-import AppLogoIcon from '@/components/app-logo-icon';
+import { AppLogoWithBackground } from '@/components/app-logo-icon';
 import { home } from '@/routes';
 import type { AuthLayoutProps, SharedData } from '@/types';
 
@@ -38,9 +38,7 @@ export default function AuthSplitLayout({
                         href={home()}
                         className="flex items-center gap-3 text-slate-900 dark:text-white"
                     >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-none bg-blue-600 shadow-sm shadow-blue-500/20">
-                            <AppLogoIcon className="size-6 fill-current text-white" />
-                        </div>
+                        <AppLogoWithBackground size="md" />
                         <span className="text-xl font-bold tracking-tight">{name}</span>
                     </Link>
 
@@ -93,7 +91,7 @@ export default function AuthSplitLayout({
                             href={home()}
                             className="flex items-center gap-2 mb-8"
                         >
-                            <AppLogoIcon className="h-8 fill-current text-blue-600" />
+                            <AppLogoWithBackground size="sm" />
                             <span className="text-xl font-bold">{name}</span>
                         </Link>
                     </div>

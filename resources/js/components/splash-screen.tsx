@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import AppLogoIcon from '@/components/app-logo-icon';
+import { AppLogoWithBackground, useHasCustomIcon } from '@/components/app-logo-icon';
 import { cn } from '@/lib/utils';
 
 export default function SplashScreen({ onComplete }: { onComplete: () => void }) {
     const [isVisible, setIsVisible] = useState(true);
     const [progress, setProgress] = useState(0);
+    const hasCustomIcon = useHasCustomIcon();
 
     useEffect(() => {
         const duration = 5000;
@@ -41,9 +42,15 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
             <div className="relative flex flex-col items-center gap-8">
                 {/* Logo with Animation */}
                 <div className="relative">
-                    <div className="absolute inset-0 bg-blue-600/20 rounded-none blur-2xl animate-pulse" />
-                    <div className="relative bg-blue-600 p-6 rounded-none shadow-2xl shadow-blue-600/20 animate-in zoom-in duration-700">
-                        <AppLogoIcon className="w-16 h-16 fill-current text-white" />
+                    <div className={cn(
+                        "absolute inset-0 blur-2xl animate-pulse",
+                        hasCustomIcon ? 'bg-gray-200/50 dark:bg-gray-800/50' : 'bg-blue-600/20'
+                    )} />
+                    <div className="relative p-6 animate-in zoom-in duration-700">
+                        <AppLogoWithBackground
+                            size="xl"
+                            className="w-20 h-20"
+                        />
                     </div>
                 </div>
 

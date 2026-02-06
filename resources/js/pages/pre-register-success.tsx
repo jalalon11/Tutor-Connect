@@ -1,5 +1,4 @@
 import { Head, Link } from '@inertiajs/react';
-import { CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Props {
@@ -16,13 +15,15 @@ export default function PreRegisterSuccess({ message, name }: Props) {
                 <div className="w-full max-w-md text-center">
                     {/* Success Icon */}
                     <div className="relative inline-block mb-6">
-                        <div className="w-20 h-20 rounded-none bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                            <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
-                        </div>
+                        <img
+                            src="/images/verified-success.gif"
+                            alt="Verified Success"
+                            className="w-40 h-40 object-contain"
+                        />
                     </div>
 
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                        You're Verified, {name}! 🎉
+                        You're Verified, {name}!
                     </h1>
                     <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
                         {message}

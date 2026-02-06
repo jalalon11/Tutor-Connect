@@ -28,6 +28,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 // Pre-Registration with Email Verification
 Route::get('/pre-register', [PreRegistrationController::class, 'show'])->name('pre-register');
 Route::post('/pre-register', [PreRegistrationController::class, 'store'])->name('pre-register.store');
+Route::post('/pre-register/resend', [PreRegistrationController::class, 'resend'])->name('pre-register.resend');
 Route::get('/pre-register/sent', [PreRegistrationController::class, 'sent'])->name('pre-register.sent');
 Route::get('/pre-register/verify/{token}', [PreRegistrationController::class, 'verify'])->name('pre-register.verify');
 Route::get('/pre-register/setup/{token}', [PreRegistrationController::class, 'showSetup'])->name('pre-register.setup');
@@ -65,6 +66,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         ->name('pre-registrations.send-emails');
     Route::post('/pre-registrations/send-launch-emails', [PreRegistrationAdminController::class, 'sendLaunchEmails'])
         ->name('pre-registrations.send-launch-emails');
+    Route::delete('/pre-registrations/{preRegistration}', [PreRegistrationAdminController::class, 'destroy'])
+        ->name('pre-registrations.destroy');
 
     // App Settings
     Route::get('/settings', [AppSettingsController::class, 'index'])

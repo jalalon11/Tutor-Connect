@@ -1,4 +1,5 @@
-import { GraduationCap, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { AppLogoWithBackground } from '@/components/app-logo-icon';
 import {
     Dialog,
     DialogContent,
@@ -23,8 +24,8 @@ export default function PreRegistrationDialog({ open, onOpenChange }: PreRegistr
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader className="text-center sm:text-center">
-                    <div className="mx-auto w-16 h-16 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 shadow-lg shadow-blue-500/30">
-                        <GraduationCap className="w-8 h-8 text-white" />
+                    <div className="mx-auto mb-4">
+                        <AppLogoWithBackground size="xl" />
                     </div>
                     <DialogTitle className="text-2xl">Pre-Register</DialogTitle>
                     <DialogDescription>

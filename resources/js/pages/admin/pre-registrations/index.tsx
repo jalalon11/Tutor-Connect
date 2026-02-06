@@ -9,6 +9,7 @@ import {
     Rocket,
     ChevronLeft,
     ChevronRight,
+    Trash2,
 } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
@@ -24,6 +25,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
+import { EnvelopeLoader } from '@/components/ui/envelope-loader';
 import { Spinner } from '@/components/ui/spinner';
 import {
     Table,
@@ -88,6 +90,11 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
     const [sendingAll, setSendingAll] = useState(false);
     const [showSelectedDialog, setShowSelectedDialog] = useState(false);
     const [showAllDialog, setShowAllDialog] = useState(false);
+    const [showSendingOverlay, setShowSendingOverlay] = useState(false);
+    const [sendingCount, setSendingCount] = useState(0);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    const [deletingId, setDeletingId] = useState<number | null>(null);
+    const [deleting, setDeleting] = useState(false);
 
     // Only verified users (not pending) can be selected for emails
     const selectableUsers = preRegistrations.data.filter(reg => reg.email_verified_at !== null);
@@ -116,6 +123,8 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
         setShowSelectedDialog(false);
         setSendingSelected(true);
         const count = selectedEligible.length;
+        setSendingCount(count);
+        setShowSendingOverlay(true);
         router.post('/admin/pre-registrations/send-emails', { ids: selectedIds }, {
             onSuccess: () => {
                 toast.success('Emails sent successfully', {
@@ -130,6 +139,7 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
             onFinish: () => {
                 setSendingSelected(false);
                 setSelectedIds([]);
+                setShowSendingOverlay(false);
             },
         });
     };
@@ -138,6 +148,8 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
         setShowAllDialog(false);
         setSendingAll(true);
         const count = stats.pending_setup;
+        setSendingCount(count);
+        setShowSendingOverlay(true);
         router.post('/admin/pre-registrations/send-launch-emails', {}, {
             onSuccess: () => {
                 toast.success('Emails sent successfully', {
@@ -149,8 +161,45 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
                     description: 'An error occurred while sending emails. Please try again.',
                 });
             },
-            onFinish: () => setSendingAll(false),
+            onFinish: () => {
+                setSendingAll(false);
+                setShowSendingOverlay(false);
+            },
         });
+    };
+
+    const handleDeleteClick = (id: number) => {
+        setDeletingId(id);
+        setShowDeleteDialog(true);
+    };
+
+    const handleConfirmDelete = () => {
+        if (!deletingId) return;
+
+        setDeleting(true);
+        router.delete(`/admin/pre-registrations/${deletingId}`, {
+            onSuccess: () => {
+                toast.success('Pre-registration deleted', {
+                    description: 'The entry has been removed successfully.',
+                });
+                setSelectedIds(prev => prev.filter(id => id !== deletingId));
+            },
+            onError: () => {
+                toast.error('Failed to delete', {
+                    description: 'An error occurred while deleting. Please try again.',
+                });
+            },
+            onFinish: () => {
+                setDeleting(false);
+                setShowDeleteDialog(false);
+                setDeletingId(null);
+            },
+        });
+    };
+
+    const getDeletingUser = () => {
+        if (!deletingId) return null;
+        return preRegistrations.data.find(reg => reg.id === deletingId);
     };
 
     const handlePageChange = (page: number) => {
@@ -238,6 +287,61 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
                         <Button onClick={handleSendToAll} className="bg-blue-600 hover:bg-blue-700">
                             <Rocket className="w-4 h-4 mr-2" />
                             Send to All Verified
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            {/* Sending Overlay Dialog */}
+            <Dialog open={showSendingOverlay}>
+                <DialogContent className="sm:max-w-md" hideCloseButton>
+                    <div className="flex flex-col items-center justify-center py-8">
+                        <EnvelopeLoader size="md" />
+                        <div className="mt-12 text-center space-y-2">
+                            <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                                Sending Account Creation Emails
+                            </h2>
+                            <p className="text-sm text-muted-foreground max-w-xs">
+                                Sending emails to {sendingCount} user{sendingCount !== 1 ? 's' : ''}...
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                                Please wait, this may take a moment.
+                            </p>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+                <DialogContent>
+                    <DialogHeader>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                                <Trash2 className="w-5 h-5 text-red-600" />
+                            </div>
+                            <DialogTitle>Delete Pre-Registration</DialogTitle>
+                        </div>
+                        <DialogDescription className="text-left">
+                            {getDeletingUser() && (
+                                <>
+                                    Are you sure you want to delete the pre-registration for <strong>{getDeletingUser()?.first_name} {getDeletingUser()?.last_name}</strong> ({getDeletingUser()?.email})?
+                                    <br /><br />
+                                    This action cannot be undone.
+                                </>
+                            )}
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setShowDeleteDialog(false)} disabled={deleting}>
+                            Cancel
+                        </Button>
+                        <Button onClick={handleConfirmDelete} variant="destructive" disabled={deleting}>
+                            {deleting ? (
+                                <><Spinner className="mr-2 w-4 h-4" />Deleting...</>
+                            ) : (
+                                <><Trash2 className="w-4 h-4 mr-2" />Delete</>
+                            )}
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -361,12 +465,13 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
                                     <TableHead>Role</TableHead>
                                     <TableHead>Registered</TableHead>
                                     <TableHead>Email Sent</TableHead>
+                                    <TableHead className="w-20 text-right pr-6">Actions</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {preRegistrations.data.length === 0 ? (
                                     <TableRow>
-                                        <TableCell colSpan={7} className="h-64 text-center">
+                                        <TableCell colSpan={8} className="h-64 text-center">
                                             <div className="flex flex-col items-center justify-center text-muted-foreground">
                                                 <Users className="w-12 h-12 mb-3 stroke-1 opacity-20" />
                                                 <p className="text-lg font-medium">No pre-registrations yet</p>
@@ -425,6 +530,19 @@ export default function PreRegistrationsIndex({ preRegistrations, stats }: Props
                                                     </span>
                                                 ) : (
                                                     <span className="text-gray-400">—</span>
+                                                )}
+                                            </TableCell>
+                                            <TableCell className="text-right pr-6">
+                                                {!reg.setup_completed_at && (
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="icon"
+                                                        onClick={() => handleDeleteClick(reg.id)}
+                                                        className="h-8 w-8 text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20"
+                                                        title="Delete pre-registration"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </Button>
                                                 )}
                                             </TableCell>
                                         </TableRow>

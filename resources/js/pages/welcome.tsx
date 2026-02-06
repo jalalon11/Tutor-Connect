@@ -1,7 +1,8 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { GraduationCap, Shield, Clock, Globe, Star, Users, BookOpen, Video, CreditCard, Sparkles, Menu, X } from 'lucide-react';
+import { Shield, Clock, Globe, Star, Users, BookOpen, Video, CreditCard, Sparkles, Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { AnimatedSection } from '@/components/animations';
+import { AppLogoWithBackground, useAppName } from '@/components/app-logo-icon';
 import FeatureMarquee from '@/components/feature-marquee';
 import PreRegistrationDialog from '@/components/pre-registration-dialog';
 import SplashScreen from '@/components/splash-screen';
@@ -16,6 +17,7 @@ export default function Welcome() {
     const [dialogOpen, setDialogOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showSplash, setShowSplash] = useState(true);
+    const appName = useAppName();
 
     // Auto-open dialog 5 seconds AFTER splash screen is gone
     useEffect(() => {
@@ -48,11 +50,9 @@ export default function Welcome() {
                         <div className="flex items-center justify-between h-16">
                             {/* Logo */}
                             <div className="flex items-center gap-2">
-                                <div className="w-10 h-10 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
-                                    <GraduationCap className="w-6 h-6 text-white" />
-                                </div>
+                                <AppLogoWithBackground size="md" />
                                 <span className="text-xl font-bold text-gray-900 dark:text-white">
-                                    TutorConnect
+                                    {appName}
                                 </span>
                             </div>
 
@@ -466,7 +466,7 @@ export default function Welcome() {
                                 className="text-lg px-10 py-6 shadow-lg shadow-blue-500/25 animate-pulse-glow btn-press"
                                 onClick={() => setDialogOpen(true)}
                             >
-                                Join as a Teacher Today
+                                Pre-Register Now!
                             </Button>
                         </AnimatedSection>
                     </div>
@@ -478,10 +478,8 @@ export default function Welcome() {
                         <div className="grid md:grid-cols-4 gap-12">
                             <div className="md:col-span-2">
                                 <div className="flex items-center gap-2 mb-4">
-                                    <div className="w-10 h-10 rounded-none bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                                        <GraduationCap className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-xl font-bold">TutorConnect</span>
+                                    <AppLogoWithBackground size="md" />
+                                    <span className="text-xl font-bold">{appName}</span>
                                 </div>
                                 <p className="text-gray-400 max-w-md">
                                     Connecting PRC-licensed teachers from the Philippines with
@@ -509,7 +507,7 @@ export default function Welcome() {
                         </div>
 
                         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm">
-                            © {new Date().getFullYear()} TutorConnect. All rights reserved.
+                            © {new Date().getFullYear()} {appName}. All rights reserved.
                         </div>
                     </div>
                 </footer>

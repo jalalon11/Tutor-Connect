@@ -39,10 +39,18 @@ class PreRegistrationController extends Controller
             'verification_token' => PreRegistration::generateToken(),
         ]);
 
-        // Send verification email
-        Mail::to($preRegistration->email)->send(
+        // Queue verification email for async sending
+        Mail::to($preRegistration->email)->queue(
             new PreRegistrationVerificationMail($preRegistration)
         );
+
+        // Return JSON for AJAX requests to allow in-page state update
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Verification email sent successfully.',
+            ]);
+        }
 
         return redirect()->route('pre-register.sent');
     }
@@ -100,6 +108,46 @@ class PreRegistrationController extends Controller
             'token' => $token,
             'name' => $preRegistration->first_name,
             'email' => $preRegistration->email,
+        ]);
+    }
+
+    /**
+     * Resend verification email for existing pre-registration.
+     */
+    public function resend(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|exists:pre_registrations,email',
+        ]);
+
+        $preRegistration = PreRegistration::where('email', $validated['email'])->first();
+
+        if (!$preRegistration) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Pre-registration not found.',
+            ], 404);
+        }
+
+        if ($preRegistration->isVerified()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This email has already been verified.',
+            ], 400);
+        }
+
+        // Regenerate token and resend email
+        $preRegistration->update([
+            'verification_token' => PreRegistration::generateToken(),
+        ]);
+
+        Mail::to($preRegistration->email)->queue(
+            new PreRegistrationVerificationMail($preRegistration)
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Verification email has been resent.',
         ]);
     }
 

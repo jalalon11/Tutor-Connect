@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import {
     CheckCircle2,
     Lock,
@@ -11,7 +11,7 @@ import {
     Shield,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import AppLogoIcon from '@/components/app-logo-icon';
+import { AppLogoWithBackground } from '@/components/app-logo-icon';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,6 +29,13 @@ type Step = 'loading' | 'password' | 'transitioning' | 'role';
 
 // Sidebar Progress Component
 function SidebarProgress({ currentStep, name }: { currentStep: Step; name: string }) {
+    const { appSettings } = usePage().props as {
+        appSettings?: {
+            name?: string;
+            icon?: string | null;
+        };
+    };
+
     const steps = [
         {
             key: 'verified',
@@ -70,10 +77,8 @@ function SidebarProgress({ currentStep, name }: { currentStep: Step; name: strin
         <div className="h-full flex flex-col px-8 lg:px-12 py-10">
             {/* App Logo & Name */}
             <div className="flex items-center gap-3 mb-12">
-                <div className="w-10 h-10 bg-blue-600 flex items-center justify-center">
-                    <AppLogoIcon className="w-6 h-6 fill-current text-white" />
-                </div>
-                <span className="text-xl font-bold text-white">TutorConnect</span>
+                <AppLogoWithBackground size="md" />
+                <span className="text-xl font-bold text-white">{appSettings?.name || 'TutorConnect'}</span>
             </div>
 
             {/* Welcome Header */}
@@ -184,11 +189,11 @@ export default function PreRegisterSetup({ token, name, email }: Props) {
                     if (prev >= 100) {
                         clearInterval(interval);
                         setStep('password');
-                        return 100;
+                        return 10;
                     }
                     return prev + 4;
                 });
-            }, 100);
+            }, 130);
             return () => clearInterval(interval);
         }
     }, [step]);
@@ -228,9 +233,11 @@ export default function PreRegisterSetup({ token, name, email }: Props) {
             return (
                 <div className="text-center">
                     <div className="relative inline-block mb-6">
-                        <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                            <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
-                        </div>
+                        <img
+                            src="/images/verified-success.gif"
+                            alt="Verified Success"
+                            className="w-40 h-40 object-contain"
+                        />
                     </div>
 
                     <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
@@ -298,6 +305,7 @@ export default function PreRegisterSetup({ token, name, email }: Props) {
                                         required
                                         autoFocus
                                         placeholder="••••••••"
+                                        autoComplete="new-password"
                                         className="pr-10 h-11"
                                     />
                                     <button
@@ -322,6 +330,7 @@ export default function PreRegisterSetup({ token, name, email }: Props) {
                                         onChange={e => setData('password_confirmation', e.target.value)}
                                         required
                                         placeholder="••••••••"
+                                        autoComplete="new-password"
                                         className="pr-10 h-11"
                                     />
                                     <button

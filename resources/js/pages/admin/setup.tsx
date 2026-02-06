@@ -81,6 +81,7 @@ export default function Setup() {
                                     <Input
                                         id="password"
                                         type="password"
+                                        autoComplete="new-password"
                                         value={data.password}
                                         onChange={e => setData('password', e.target.value)}
                                         className="pl-10 h-11 bg-gray-50 dark:bg-black border-none focus:ring-2 focus:ring-blue-500 transition-all"
@@ -98,6 +99,7 @@ export default function Setup() {
                                     <Input
                                         id="password_confirmation"
                                         type="password"
+                                        autoComplete="new-password"
                                         value={data.password_confirmation}
                                         onChange={e => setData('password_confirmation', e.target.value)}
                                         className="pl-10 h-11 bg-gray-50 dark:bg-black border-none focus:ring-2 focus:ring-blue-500 transition-all"

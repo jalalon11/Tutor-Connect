@@ -96,8 +96,8 @@ class PreRegistrationAdminController extends Controller
                 $preRegistration->update(['setup_email_sent_at' => now()]);
             }
 
-            // Send email
-            Mail::to($preRegistration->email)->send(
+            // Queue email for async sending
+            Mail::to($preRegistration->email)->queue(
                 new AccountReadyMail($preRegistration)
             );
 
@@ -123,8 +123,8 @@ class PreRegistrationAdminController extends Controller
             // Generate setup token
             $preRegistration->generateSetupToken();
 
-            // Send email
-            Mail::to($preRegistration->email)->send(
+            // Queue email for async sending
+            Mail::to($preRegistration->email)->queue(
                 new AccountReadyMail($preRegistration)
             );
 
@@ -132,5 +132,20 @@ class PreRegistrationAdminController extends Controller
         }
 
         return redirect()->back()->with('success', "Successfully sent account creation emails to {$count} users.");
+    }
+
+    /**
+     * Delete a pre-registration entry.
+     */
+    public function destroy(PreRegistration $preRegistration)
+    {
+        // Don't allow deleting if user has already completed setup
+        if ($preRegistration->setup_completed_at) {
+            return redirect()->back()->withErrors(['error' => 'Cannot delete a user who has already completed their account setup.']);
+        }
+
+        $preRegistration->delete();
+
+        return redirect()->back()->with('success', 'Pre-registration entry deleted successfully.');
     }
 }
