@@ -188,6 +188,7 @@ export default function TeacherApplicationDialog({ open, onOpenChange }: Teacher
                                     type="email"
                                     value={data.email}
                                     onChange={e => setData('email', e.target.value)}
+                                    autoComplete="email"
                                     required
                                     placeholder="you@example.com"
                                 />

@@ -103,6 +103,20 @@ export function useAppearance(): UseAppearanceReturn {
 
         applyTheme(mode);
         notify();
+        
+        // Log appearance change to server (fire and forget)
+        if (typeof window !== 'undefined') {
+            fetch('/settings/appearance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
+                },
+                body: JSON.stringify({ appearance: mode }),
+            }).catch(() => {
+                // Silently fail - appearance change already applied locally
+            });
+        }
     }, []);
 
     return { appearance, resolvedAppearance, updateAppearance } as const;

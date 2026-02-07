@@ -124,6 +124,7 @@ export default function TeacherPreRegistrationForm() {
                                 id="email"
                                 name="email"
                                 type="email"
+                                autoComplete="email"
                                 required
                                 placeholder="you@example.com"
                                 className="bg-white dark:bg-gray-800"

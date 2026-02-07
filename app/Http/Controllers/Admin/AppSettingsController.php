@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AppSetting;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
@@ -71,13 +72,15 @@ class AppSettingsController extends Controller
             'app_icon' => 'nullable|image|mimes:png,jpg,jpeg,svg,webp|max:2048',
         ]);
 
+        $oldName = AppSetting::get('app_name', 'TutorConnect');
+        $oldIcon = AppSetting::get('app_icon');
+
         // Update app name
         AppSetting::set('app_name', $validated['app_name']);
 
         // Handle icon upload
         if ($request->hasFile('app_icon')) {
             // Delete old icon if exists
-            $oldIcon = AppSetting::get('app_icon');
             if ($oldIcon && Storage::disk('public')->exists($oldIcon)) {
                 Storage::disk('public')->delete($oldIcon);
             }
@@ -86,6 +89,17 @@ class AppSettingsController extends Controller
             $path = $request->file('app_icon')->store('branding', 'public');
             AppSetting::set('app_icon', $path);
         }
+
+        // Log activity
+        ActivityLog::log(
+            'app_settings_updated',
+            'Updated app settings',
+            [
+                'old_name' => $oldName,
+                'new_name' => $validated['app_name'],
+                'icon_changed' => $request->hasFile('app_icon'),
+            ]
+        );
 
         return redirect()->back()->with('success', 'App settings updated successfully.');
     }
@@ -100,6 +114,13 @@ class AppSettingsController extends Controller
             Storage::disk('public')->delete($icon);
         }
         AppSetting::set('app_icon', null);
+
+        // Log activity
+        ActivityLog::log(
+            'app_icon_removed',
+            'Removed app icon',
+            ['removed_icon' => $icon]
+        );
 
         return redirect()->back()->with('success', 'App icon removed.');
     }
@@ -142,6 +163,13 @@ class AppSettingsController extends Controller
         }
 
         file_put_contents($envPath, $envContent);
+
+        // Log activity
+        ActivityLog::log(
+            'mail_settings_updated',
+            'Updated mail server settings',
+            ['changed_fields' => array_keys($validated)]
+        );
 
         // Clear all config cache to apply new settings
         try {

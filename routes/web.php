@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\TeacherApplicationController as AdminTeacherApplicationController;
 use App\Http\Controllers\Admin\AppSettingsController;
 use App\Http\Controllers\Admin\PreRegistrationAdminController;
+use App\Http\Controllers\Admin\SystemStatusController;
 use App\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -80,6 +81,12 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         ->name('settings.update-mail');
     Route::post('/settings/mail/test', [AppSettingsController::class, 'testMail'])
         ->name('settings.test-mail');
+
+    // System Status
+    Route::get('/system-status', [SystemStatusController::class, 'index'])
+        ->name('system-status.index');
+    Route::post('/system-status/clear-logs', [SystemStatusController::class, 'clearActivityLogs'])
+        ->name('system-status.clear-logs');
 });
 
 // OAuth Routes

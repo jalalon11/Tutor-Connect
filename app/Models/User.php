@@ -25,7 +25,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
         'is_admin',
@@ -49,6 +50,15 @@ class User extends Authenticatable
         'two_factor_secret',
         'two_factor_recovery_codes',
         'remember_token',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array<int, string>
+     */
+    protected $appends = [
+        'name',
     ];
 
     /**
@@ -110,10 +120,18 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user's name.
+     */
+    public function getNameAttribute(): string
+    {
+        return trim($this->first_name . ' ' . $this->last_name);
+    }
+
+    /**
      * Get full name (alias for name for compatibility).
      */
     public function getFullNameAttribute(): string
     {
-        return $this->name;
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

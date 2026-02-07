@@ -153,7 +153,7 @@ export default function Login({
                             </a>
                         </div>
 
-                        {canRegister && (
+                        {/* {canRegister && (
                             <div className="text-center text-sm text-muted-foreground pt-4">
                                 New to TutorConnect?{' '}
                                 <TextLink href={register()} className="text-blue-600 hover:text-blue-700 dark:text-blue-400 font-semibold inline-flex items-center group">
@@ -161,7 +161,7 @@ export default function Login({
                                     <ArrowRight className="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform" />
                                 </TextLink>
                             </div>
-                        )}
+                        )} */}
                     </>
                 )}
             </Form>

@@ -1,6 +1,7 @@
 import { Head, useForm, router } from '@inertiajs/react';
 import { Settings, Image, Trash2, Upload, Mail, Server, Lock, Eye, EyeOff, Send, Users, Rocket, CheckCircle2, Clock } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -87,18 +88,51 @@ export default function AppSettingsIndex({ settings, mailSettings }: Props) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/admin/settings', { forceFormData: true });
+        post('/admin/settings', { 
+            forceFormData: true,
+            onSuccess: () => {
+                toast.success('Settings updated', {
+                    description: 'App settings have been saved successfully.',
+                });
+            },
+            onError: () => {
+                toast.error('Update failed', {
+                    description: 'Failed to update settings. Please try again.',
+                });
+            },
+        });
     };
 
     const handleMailSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        mailForm.post('/admin/settings/mail');
+        mailForm.post('/admin/settings/mail', {
+            onSuccess: () => {
+                toast.success('Mail settings updated', {
+                    description: 'Email server configuration has been saved.',
+                });
+            },
+            onError: () => {
+                toast.error('Update failed', {
+                    description: 'Failed to update mail settings. Please check your configuration.',
+                });
+            },
+        });
     };
 
     const handleTestEmail = () => {
         if (!testEmail) return;
         setTestingSending(true);
         router.post('/admin/settings/mail/test', { test_email: testEmail }, {
+            onSuccess: () => {
+                toast.success('Test email sent', {
+                    description: `A test email has been sent to ${testEmail}.`,
+                });
+            },
+            onError: () => {
+                toast.error('Test email failed', {
+                    description: 'Failed to send test email. Please check your mail configuration.',
+                });
+            },
             onFinish: () => setTestingSending(false),
         });
     };
@@ -114,14 +148,35 @@ export default function AppSettingsIndex({ settings, mailSettings }: Props) {
     };
 
     const handleRemoveIcon = () => {
-        router.delete('/admin/settings/icon');
-        setIconPreview(null);
+        router.delete('/admin/settings/icon', {
+            onSuccess: () => {
+                toast.success('Icon removed', {
+                    description: 'App icon has been removed successfully.',
+                });
+                setIconPreview(null);
+            },
+            onError: () => {
+                toast.error('Removal failed', {
+                    description: 'Failed to remove icon. Please try again.',
+                });
+            },
+        });
     };
 
     const handleSendLaunchEmails = () => {
         if (!confirm(`Are you sure you want to send account creation emails to ${preRegStats?.pending_setup || 0} verified users?`)) return;
         setSendingEmails(true);
         router.post('/admin/pre-registrations/send-launch-emails', {}, {
+            onSuccess: () => {
+                toast.success('Emails sent successfully', {
+                    description: `Account creation emails sent to ${preRegStats?.pending_setup || 0} user${preRegStats?.pending_setup !== 1 ? 's' : ''}.`,
+                });
+            },
+            onError: () => {
+                toast.error('Failed to send emails', {
+                    description: 'An error occurred while sending emails. Please try again.',
+                });
+            },
             onFinish: () => {
                 setSendingEmails(false);
                 fetch('/admin/pre-registrations/stats')

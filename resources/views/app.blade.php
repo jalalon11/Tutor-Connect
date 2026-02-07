@@ -30,11 +30,22 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        {{-- Dynamic app name and favicon from app settings --}}
+        @php
+            $appName = \App\Models\AppSetting::get('app_name', config('app.name', 'Laravel'));
+            $appIcon = \App\Models\AppSetting::get('app_icon');
+        @endphp
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <title inertia>{{ $appName }}</title>
+        
+        @if($appIcon)
+            <link rel="icon" href="{{ Storage::url($appIcon) }}" type="image/png">
+            <link rel="apple-touch-icon" href="{{ Storage::url($appIcon) }}">
+        @else
+            <link rel="icon" href="/favicon.ico" sizes="any">
+            <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+            <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        @endif
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

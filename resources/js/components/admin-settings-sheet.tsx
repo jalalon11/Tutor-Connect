@@ -1,6 +1,7 @@
 import { useForm, router, usePage } from '@inertiajs/react';
 import { Settings, Image, Trash2, Upload, Mail, Server, Lock, Eye, EyeOff, Sun, Moon, Monitor } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -68,13 +69,34 @@ export function AdminSettingsSheet() {
         e.preventDefault();
         post('/admin/settings', {
             forceFormData: true,
-            onSuccess: () => setOpen(false),
+            onSuccess: () => {
+                toast.success('Settings updated', {
+                    description: 'App settings have been saved successfully.',
+                });
+                setOpen(false);
+            },
+            onError: () => {
+                toast.error('Update failed', {
+                    description: 'Failed to update settings. Please try again.',
+                });
+            },
         });
     };
 
     const handleMailSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        mailForm.post('/admin/settings/mail');
+        mailForm.post('/admin/settings/mail', {
+            onSuccess: () => {
+                toast.success('Mail settings updated', {
+                    description: 'Email server configuration has been saved.',
+                });
+            },
+            onError: () => {
+                toast.error('Update failed', {
+                    description: 'Failed to update mail settings. Please check your configuration.',
+                });
+            },
+        });
     };
 
 
@@ -92,8 +114,19 @@ export function AdminSettingsSheet() {
     };
 
     const handleRemoveIcon = () => {
-        router.delete('/admin/settings/icon');
-        setIconPreview(null);
+        router.delete('/admin/settings/icon', {
+            onSuccess: () => {
+                toast.success('Icon removed', {
+                    description: 'App icon has been removed successfully.',
+                });
+                setIconPreview(null);
+            },
+            onError: () => {
+                toast.error('Removal failed', {
+                    description: 'Failed to remove icon. Please try again.',
+                });
+            },
+        });
     };
 
     const appearanceOptions: { value: Appearance; label: string; icon: React.ReactNode }[] = [

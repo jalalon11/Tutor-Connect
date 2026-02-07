@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\ProfileDeleteRequest;
 use App\Http\Requests\Settings\ProfileUpdateRequest;
+use App\Models\ActivityLog;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -30,13 +31,37 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $oldData = $user->only(['first_name', 'last_name', 'email']);
+        
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $user->save();
+
+        // Log profile update for admin users
+        if ($user->hasRole('admin')) {
+            $changes = [];
+            foreach (['first_name', 'last_name', 'email'] as $field) {
+                if ($user->wasChanged($field)) {
+                    $changes[$field] = [
+                        'old' => $oldData[$field],
+                        'new' => $user->$field,
+                    ];
+                }
+            }
+            
+            if (!empty($changes)) {
+                ActivityLog::log(
+                    'profile_updated',
+                    'Updated profile information',
+                    ['changes' => $changes]
+                );
+            }
+        }
 
         return to_route('profile.edit');
     }

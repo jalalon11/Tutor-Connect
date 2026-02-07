@@ -8,7 +8,8 @@ import { Spinner } from '@/components/ui/spinner';
 
 export default function Setup() {
     const { data, setData, post, processing, errors } = useForm({
-        name: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -41,20 +42,38 @@ export default function Setup() {
                     {/* Form Card */}
                     <div className="bg-white dark:bg-gray-900 rounded-none p-8 shadow-2xl shadow-blue-500/5 border border-white/20 dark:border-gray-800">
                         <form onSubmit={handleSubmit} className="space-y-5">
-                            <div className="space-y-2">
-                                <Label htmlFor="name" className="text-sm font-medium">Full Name</Label>
-                                <div className="relative">
-                                    <UserIcon className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                                    <Input
-                                        id="name"
-                                        value={data.name}
-                                        onChange={e => setData('name', e.target.value)}
-                                        className="pl-10 h-11 bg-gray-50 dark:bg-black border-none focus:ring-2 focus:ring-blue-500 transition-all"
-                                        placeholder="John Doe"
-                                        required
-                                    />
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="first_name" className="text-sm font-medium">First Name</Label>
+                                    <div className="relative">
+                                        <UserIcon className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                                        <Input
+                                            id="first_name"
+                                            value={data.first_name}
+                                            onChange={e => setData('first_name', e.target.value)}
+                                            className="pl-10 h-11 bg-gray-50 dark:bg-black border-none focus:ring-2 focus:ring-blue-500 transition-all"
+                                            placeholder="John"
+                                            required
+                                        />
+                                    </div>
+                                    <InputError message={errors.first_name} />
                                 </div>
-                                <InputError message={errors.name} />
+
+                                <div className="space-y-2">
+                                    <Label htmlFor="last_name" className="text-sm font-medium">Last Name</Label>
+                                    <div className="relative">
+                                        <UserIcon className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                                        <Input
+                                            id="last_name"
+                                            value={data.last_name}
+                                            onChange={e => setData('last_name', e.target.value)}
+                                            className="pl-10 h-11 bg-gray-50 dark:bg-black border-none focus:ring-2 focus:ring-blue-500 transition-all"
+                                            placeholder="Doe"
+                                            required
+                                        />
+                                    </div>
+                                    <InputError message={errors.last_name} />
+                                </div>
                             </div>
 
                             <div className="space-y-2">
@@ -66,6 +85,7 @@ export default function Setup() {
                                         type="email"
                                         value={data.email}
                                         onChange={e => setData('email', e.target.value)}
+                                        autoComplete="email"
                                         className="pl-10 h-11 bg-gray-50 dark:bg-black border-none focus:ring-2 focus:ring-blue-500 transition-all"
                                         placeholder="admin@tutorconnect.com"
                                         required

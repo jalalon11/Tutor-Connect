@@ -233,6 +233,7 @@ export default function PreRegister() {
                                 type="email"
                                 value={data.email}
                                 onChange={e => updateData('email', e.target.value)}
+                                autoComplete="email"
                                 required
                                 placeholder="you@example.com"
                                 className="pl-10 h-11 bg-gray-50/50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 focus:ring-2 focus:ring-blue-500 transition-all"
